@@ -13,6 +13,17 @@ class Clipboard extends SimpleModule
     if @opts.pasteImage and typeof @opts.pasteImage != 'string'
       @opts.pasteImage = 'inline'
 
+    @editor.body.on 'copy', (e) =>
+      ### Explicitly set clipboard data to avoid copying extra computed styles. ###
+      e.preventDefault();
+      range = @editor.selection.range()
+      return unless range and !range.collapsed
+      clonedSelection = range.cloneContents()
+      div = document.createElement('div')
+      div.appendChild(clonedSelection);
+      cd = e.originalEvent.clipboardData
+      cd.setData('text/html', div.innerHTML)
+
     @editor.body.on 'paste', (e) =>
       return if @pasting or @_pasteBin
 
