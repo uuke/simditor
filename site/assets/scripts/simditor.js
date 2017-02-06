@@ -476,11 +476,11 @@ Formatter = (function(superClass) {
     }, this.opts.allowedAttributes);
     this._allowedStyles = $.extend({
       span: ['color', 'font-size', 'font-style'],
-      b: ['color'],
-      i: ['color'],
-      strong: ['color'],
-      strike: ['color'],
-      u: ['color'],
+      b: ['color', 'font-style'],
+      i: ['color', 'font-style'],
+      strong: ['color', 'font-style'],
+      strike: ['color', 'font-style'],
+      u: ['color', 'font-style'],
       p: ['margin-left', 'text-align'],
       h1: ['margin-left', 'text-align'],
       h2: ['margin-left', 'text-align'],
